@@ -1,17 +1,22 @@
 import { ThemeProvider } from '@emotion/react';
-import { CssBaseline } from '@mui/material';
-import Button from '@mui/material/Button';
+import { Box, CircularProgress, CssBaseline } from '@mui/material';
+import { Suspense } from 'react';
+import { RouterProvider } from 'react-router-dom';
 import theme from './theme/theme';
+import router from './views/routes/routes';
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <div className="App">
-        <Button color="primary" variant="contained">Contained</Button>
-        <Button variant="contained">Contained</Button>
-        <Button color="secondary" variant="contained">Contained</Button>
-      </div>
+      <Suspense fallback={(
+        <Box sx={{ display: 'flex' }}>
+          <CircularProgress />
+        </Box>
+      )}
+      >
+        <RouterProvider router={router} />
+      </Suspense>
     </ThemeProvider>
   );
 }
