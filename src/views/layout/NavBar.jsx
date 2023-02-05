@@ -98,7 +98,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   alignItems: 'center',
   justifyContent: 'flex-end',
   padding: theme.spacing(0, 1),
-  height: '72px',
+  height: '65px',
   // necessary for content to be below app bar
   ...theme.mixins.toolbar,
 }));
@@ -167,7 +167,7 @@ function NavBar({ children }) {
           >
             <MenuIcon />
           </IconButton>
-          <Box sx={{ flexGrow: 1, p: 3, justifyContent: 'space-between' }}>
+          <Box sx={{ flexGrow: 1, p: 2, justifyContent: 'space-between' }}>
             <Box sx={{ display: 'flex' }}>
               <Typography sx={{ letterSpacing: 8 }} variant="h6" noWrap component="div">
                 Stock
@@ -181,7 +181,7 @@ function NavBar({ children }) {
             width: '100%', maxWidth: 220, padding: 0
           }}
           >
-            <ListItem alignItems="flex-start">
+            <ListItem sx={{ py: 0 }} alignItems="flex-start">
               <ListItemAvatar>
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
               </ListItemAvatar>
