@@ -107,16 +107,6 @@ const navigations = [
             title: 'Discount Reports',
             to: 'discount-reports'
           },
-          {
-            icon: <CheckCircleOutlineOutlinedIcon />,
-            title: 'Promo Code Reports',
-            to: 'promo-code-reports'
-          },
-          {
-            icon: <LocalAtmOutlinedIcon />,
-            title: 'Discount Reports',
-            to: 'discount-reports'
-          }
         ]
       }
     ]
