@@ -4,7 +4,9 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ExpandLessOutlinedIcon from '@mui/icons-material/ExpandLessOutlined';
 import ExpandMoreOutlinedIcon from '@mui/icons-material/ExpandMoreOutlined';
 import MenuIcon from '@mui/icons-material/Menu';
-import { Avatar, Collapse, ListItemAvatar } from '@mui/material';
+import {
+  Avatar, Collapse, colors, ListItemAvatar
+} from '@mui/material';
 import MuiAppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -19,7 +21,7 @@ import { styled, useTheme } from '@mui/material/styles';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import * as React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import navigations from '../../config/navigations';
 import hasChildren from '../../utils/checkHasChildrenNavigations';
 
@@ -27,9 +29,38 @@ const drawerWidth = 280;
 
 function SingleLevel({ item }) {
   const navigate = useNavigate();
+  const location = useLocation();
+  const params = useParams();
+
+  const getRoutePath = (Location, Params) => {
+    const { pathname } = Location;
+
+    if (!Object.keys(Params).length) {
+      return pathname; // we don't need to replace anything
+    }
+
+    let path = pathname;
+    Object.entries(Params).forEach(([paramName, paramValue]) => {
+      if (paramValue) {
+        path = path.replace(paramValue, `:${paramName}`);
+      }
+    });
+    return path;
+  };
+
+  const path = getRoutePath(location, params);
+
   return (
-    <ListItem onClick={() => navigate(item.to)} button>
-      <ListItemIcon>{item.icon}</ListItemIcon>
+    <ListItem
+      disableRipple
+      sx={{
+        bgcolor: path === item.to ? colors.grey[300] : '',
+        color: path === item.to ? 'secondary.light' : '',
+      }}
+      onClick={() => navigate(item.to)}
+      button
+    >
+      <ListItemIcon sx={{ color: path === item.to ? 'secondary.light' : '', }}>{item.icon}</ListItemIcon>
       <ListItemText primary={item.title} />
     </ListItem>
   );
@@ -194,7 +225,15 @@ function NavBar({ children }) {
           </List>
         </Toolbar>
       </AppBar>
-      <Drawer variant="permanent" open={open}>
+      <Drawer
+        variant="permanent"
+        open={open}
+        PaperProps={{
+          sx: {
+            backgroundColor: colors.grey[50],
+          }
+        }}
+      >
         <DrawerHeader>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
@@ -203,7 +242,12 @@ function NavBar({ children }) {
         <Divider />
         {navigations.map((item, key) => <MenuItem key={key} open={open} item={item} />)}
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+      <Box
+        component="main"
+        sx={{
+          flexGrow: 1, p: 3, bgcolor: colors.grey[50], height: '100vh'
+        }}
+      >
         <DrawerHeader />
         {children}
       </Box>

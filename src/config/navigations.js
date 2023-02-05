@@ -55,12 +55,12 @@ const navigations = [
       {
         icon: <MonetizationOnOutlinedIcon />,
         title: 'Promo Code',
-        to: '/promocode',
+        to: '/offerings/promocode',
       },
       {
         icon: <DiscountOutlinedIcon />,
         title: 'Discount',
-        to: '/discounts',
+        to: '/offerings/discounts',
       }
     ]
   },
@@ -71,27 +71,27 @@ const navigations = [
       {
         icon: <MovingOutlinedIcon />,
         title: 'Sales Reports',
-        to: '/sales-reports',
+        to: '/report/sales-reports',
       },
       {
         icon: <FactCheckOutlinedIcon />,
         title: 'Purchase Reports',
-        to: '/purchase-reports',
+        to: '/report/purchase-reports',
       },
       {
         icon: <ShoppingBasketOutlinedIcon />,
         title: 'Order Reports',
-        to: '/order-reports',
+        to: '/report/order-reports',
       },
       {
         icon: <BarChartOutlinedIcon />,
         title: 'Stock Reports',
-        to: '/stock-reports',
+        to: '/report/stock-reports',
       },
       {
         icon: <AssignmentOutlinedIcon />,
         title: 'Products Reports',
-        to: '/product-reports',
+        to: '/report/product-reports',
       },
       {
         icon: <LoyaltyOutlinedIcon />,
@@ -100,12 +100,12 @@ const navigations = [
           {
             icon: <CheckCircleOutlineOutlinedIcon />,
             title: 'Promo Code Reports',
-            to: 'promo-code-reports'
+            to: '/report/promo-code-reports'
           },
           {
             icon: <LocalAtmOutlinedIcon />,
             title: 'Discount Reports',
-            to: 'discount-reports'
+            to: '/report/discount-reports'
           },
         ]
       }
